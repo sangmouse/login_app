@@ -11,6 +11,8 @@ const initialState = {
 };
 
 export default function loginReduder(state = initialState, action) {
+
+  
   switch (action.type) {
     case type.LOGIN_REQUESTED:
       return {
@@ -34,6 +36,8 @@ export default function loginReduder(state = initialState, action) {
         loading: false,
         error: action.message,
       };
+
+
 
     default:
       return state;

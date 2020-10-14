@@ -11,7 +11,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/login" exact component={Login} />
-          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute path="/" component={Home} />
         </Switch>
       </Router>
     </>
