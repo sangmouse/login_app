@@ -16,10 +16,6 @@ export default function loginReduder(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        userData: {
-          username: action.payload.username,
-          password: action.payload.password,
-        },
       };
 
     case type.LOGIN_SUCCESSED:
