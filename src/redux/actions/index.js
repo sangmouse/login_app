@@ -25,10 +25,10 @@ const registerSucced = () => {
     
   };
 };
-const registerFailed = (data) => {
+const registerFailed = (message) => {
   return {
     type: type.REGISTER_FAILED,
-    data
+    message
   };
 };
 const onUpdateStatusError = (data) => {

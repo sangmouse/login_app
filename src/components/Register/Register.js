@@ -12,9 +12,9 @@ const Register = (props) => {
   const [password, setPassword] = useState("");
   const { registerStatus } = props.registerStatus;
   const { error } = props.error;
+  const { message } = props.message;
+ console.log('message', message)
 
-  // const registerStatus = useSelector(state => state.register.registerStatus)
-  // console.log('registerStatus', registerStatus)
 
   const onChangeUsername = (event) => {
     setUsername(event.target.value);
@@ -40,10 +40,9 @@ const Register = (props) => {
     dispatch(onUpdateStatusError(false))
   };
 
-  useEffect(() => {
-    if (error) {
-    }
-  }, [error]);
+
+ 
+
   useEffect(() => {
     if (registerStatus) {
       history.push("/login");
@@ -58,7 +57,19 @@ const Register = (props) => {
           className={error ? "notify active" : "notify"}
           onClick={onCloseNofify}
         >
-          <p>Register Failed !</p>
+          <div className="content">
+            <p>Register Failed !</p>
+            <small> 
+            {message && message.errors.email ? 'Email' : ''} {message ? message.errors.email : ''}, 
+            </small>
+            <small> 
+            {message && message.errors.username ? 'Username' : ''} {message ? message.errors.username : ''}, 
+            </small>
+            <small> 
+            {message && message.errors.password ? 'Password' : ''} {message ? message.errors.password : ''}, 
+            </small>
+          </div>
+          
         </div>
         <div className="child">
           <form className="form-login" onSubmit={onSubmit}>
@@ -115,6 +126,7 @@ const Register = (props) => {
 const mapState = (state) => ({
   registerStatus: state.register,
   error: state.register,
+  message: state.register,
 });
 
 export default connect(mapState)(Register);

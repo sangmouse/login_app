@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   error: false,
   registerStatus: false,
+  message: ""
   
 };
 
@@ -24,6 +25,7 @@ export default function registerReducer(state = initialState, action) {
     case type.REGISTER_FAILED:
       return {
         error: true,
+        message: action.message
       };
 
       break;

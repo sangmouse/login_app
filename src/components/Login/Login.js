@@ -12,6 +12,8 @@ const Login = (props) => {
 
   const { isAuthenticated } = props.isAuthenticated;
   const { error } = props.error;
+  const { message } = props.message;
+  console.log('message', message)
 
   const onChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -54,7 +56,13 @@ const Login = (props) => {
           className={error ? "notify active" : "notify"}
           onClick={onCloseNofify}
         >
+          <div className="content">
           <p>Login Failed !</p>
+          <small>
+            Email or password is invalid
+          </small>
+          </div>
+         
         </div>
         <div className="child">
           <form className="form-login" onSubmit={onSubmit}>
@@ -100,7 +108,8 @@ const Login = (props) => {
 const mapState = (state) => ({
   tokenLogin: state.login,
   isAuthenticated: state.home,
-  error: state.login
+  error: state.login,
+  message: state.login,
 });
 
 export default connect(mapState)(Login);

@@ -22,7 +22,9 @@ export function* registerInSaga(action) {
       yield put(registerSucced());  
     }
   } catch (error) {
-    yield put(registerFailed());
+    // debugger
+    yield put(registerFailed(error.response.data));
+    
     
   }
 }

@@ -33,8 +33,11 @@
 .notify.active{
   display: flex !important;
 }
+.notify .content small{
+  color: black;
+}
 
-.notify p {
+.notify .content {
   margin: 0;
   transition: .4s ease-in-out;
   padding: 0;

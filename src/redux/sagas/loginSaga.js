@@ -19,7 +19,7 @@ export function* signInSaga(action) {
       yield put(loginSucced(response.data.user.token));
     }
   } catch (error) {
-    yield put(loginFailed(error))
+    yield put(loginFailed(error.response.data))
   }
 }
 
