@@ -30,7 +30,10 @@ const Home = () => {
         >
           Logout
         </button>
+        <br />
+        
       </div>
+      
     </>
   );
 };
