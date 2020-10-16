@@ -6,7 +6,7 @@ const initialState = {
     username: null,
     password: null,
   },
-  error: null,
+  error: false,
   token: "",
 };
 
@@ -22,7 +22,7 @@ export default function loginReduder(state = initialState, action) {
 
     case type.LOGIN_SUCCESSED:
       localStorage.setItem("token", JSON.stringify(action.data));
-
+      
       return {
         ...state,
         loading: false,
@@ -30,12 +30,20 @@ export default function loginReduder(state = initialState, action) {
       };
 
     case type.LOGIN_FAILED:
-      // console.log(action.message)
+      
       return {
         ...state,
         loading: false,
-        error: action.message,
+        error: true
       };
+
+      case type.UPDATE_STATUS_ERROR:
+      return {
+        error: action.data,
+      };
+
+      break;
+
 
 
 

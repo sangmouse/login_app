@@ -2,17 +2,23 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router";
 import { registerRequest, onUpdateStatusError } from "./../../redux/actions/index";
-import { loginRequest } from "./../../redux/actions/index";
+import store from "./../../redux/store";
 
-const Login = (props) => {
+const Register = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const { isAuthenticated } = props.isAuthenticated;
+  const { registerStatus } = props.registerStatus;
   const { error } = props.error;
 
+  // const registerStatus = useSelector(state => state.register.registerStatus)
+  // console.log('registerStatus', registerStatus)
+
+  const onChangeUsername = (event) => {
+    setUsername(event.target.value);
+  };
   const onChangeEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -22,13 +28,11 @@ const Login = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginRequest(email, password));
+    dispatch(registerRequest(username, email, password));
   };
 
-  const onHandleRegister = (e) => {
-    e.preventDefault();
-    // dispatch(registerRequest())
-    history.push("/register");
+  const onGoBack = () => {
+    history.goBack();
   };
 
   const onCloseNofify = () => {
@@ -37,27 +41,39 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    const isToken = localStorage.getItem("token");
-
-    if (isToken && isAuthenticated) {
-      history.push("/");
-    } else {
+    if (error) {
+    }
+  }, [error]);
+  useEffect(() => {
+    if (registerStatus) {
       history.push("/login");
     }
-  }, [isAuthenticated]);
+  }, [registerStatus]);
 
   return (
     <>
       <div className="login-app">
-      <div
+        <div
           id="notify"
           className={error ? "notify active" : "notify"}
           onClick={onCloseNofify}
         >
-          <p>Login Failed !</p>
+          <p>Register Failed !</p>
         </div>
         <div className="child">
           <form className="form-login" onSubmit={onSubmit}>
+            <div className="form-group">
+              <label>Username:</label>
+              <input
+                required
+                className="form-control"
+                id="username"
+                onChange={onChangeUsername}
+                placeholder="Enter username"
+                type="text"
+                autoComplete="off"
+              />
+            </div>
             <div className="form-group">
               <label>Email:</label>
               <input
@@ -82,14 +98,13 @@ const Login = (props) => {
                 autoComplete="off"
               />
             </div>
-            <div className="type-btn">
-              <button type="submit" className="btn btn-primary">
-                Login
-              </button>
-            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Register
+            </button>
           </form>
-          <a className="register" onClick={onHandleRegister}>
-            Register
+          <a className="cancel" onClick={onGoBack}>
+            Cancel
           </a>
         </div>
       </div>
@@ -98,9 +113,8 @@ const Login = (props) => {
 };
 
 const mapState = (state) => ({
-  tokenLogin: state.login,
-  isAuthenticated: state.home,
-  error: state.login
+  registerStatus: state.register,
+  error: state.register,
 });
 
-export default connect(mapState)(Login);
+export default connect(mapState)(Register);

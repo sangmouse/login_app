@@ -1,12 +1,40 @@
 import * as type from "./../TypeAction";
 
-const loginRequest = (username, password) => {
+const loginRequest = (email, password) => {
   return {
     type: type.LOGIN_REQUESTED,
     payload: {
-      username: username,
+      email: email,
       password: password,
     },
+  };
+};
+const registerRequest = (username, email,  password) => {
+  return {
+    type: type.REGISTER_REQUEST,
+    payload: {
+      username: username,
+      email: email,
+      password: password
+    }
+  };
+};
+const registerSucced = () => {
+  return {
+    type: type.REGISTER_SUCCESSED,
+    
+  };
+};
+const registerFailed = (data) => {
+  return {
+    type: type.REGISTER_FAILED,
+    data
+  };
+};
+const onUpdateStatusError = (data) => {
+  return {
+    type: type.UPDATE_STATUS_ERROR,
+    data
   };
 };
 
@@ -29,4 +57,4 @@ const onLogout = () => {
   };
 };
 
-export { loginRequest, loginSucced, loginFailed, onLogout };
+export { loginRequest, loginSucced, loginFailed, onLogout, registerRequest, registerSucced,  registerFailed, onUpdateStatusError};
