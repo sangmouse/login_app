@@ -33,6 +33,15 @@
 .notify.active{
   display: flex !important;
 }
+.home {
+  text-align: center;
+}
+
+.home p {
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #d26755;
+}
 .notify-succed {
   background: white;
   font-weight: bold;

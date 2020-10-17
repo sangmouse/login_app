@@ -23,6 +23,8 @@ const Home = () => {
   return (
     <>
       <div className="login-app">
+        <div className="home">
+        <p>Congratulation nigga ! </p>
         <button
           type="submit"
           className="btn btn-primary"
@@ -30,6 +32,7 @@ const Home = () => {
         >
           Logout
         </button>
+        </div>
         <br />
         
       </div>
