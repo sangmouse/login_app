@@ -32,6 +32,7 @@ export default function registerReducer(state = initialState, action) {
     case type.UPDATE_STATUS_ERROR:
       return {
         error: action.data,
+        registerStatus: action.data,
       };
 
       break;

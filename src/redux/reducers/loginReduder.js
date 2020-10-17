@@ -8,7 +8,8 @@ const initialState = {
   },
   error: false,
   token: "",
-  message: ""
+  message: "",
+  loginStatus: false
 };
 
 export default function loginReduder(state = initialState, action) {
@@ -27,6 +28,7 @@ export default function loginReduder(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        loginStatus : true,
         token: action.data,
       };
 
@@ -42,6 +44,7 @@ export default function loginReduder(state = initialState, action) {
       case type.UPDATE_STATUS_ERROR:
       return {
         error: action.data,
+        loginStatus: action.data,
       };
 
       break;

@@ -48,6 +48,7 @@ const Register = (props) => {
       
       setTimeout(()=> {
         history.push("/login");
+        dispatch(onUpdateStatusError(false))
      }, 3000)
 
       

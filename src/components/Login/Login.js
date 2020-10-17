@@ -13,7 +13,10 @@ const Login = (props) => {
   const { isAuthenticated } = props.isAuthenticated;
   const { error } = props.error;
   const { message } = props.message;
-  console.log('message', message)
+  const { loginStatus } = props.loginStatus;
+
+
+  
 
   const onChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -42,7 +45,12 @@ const Login = (props) => {
     const isToken = localStorage.getItem("token");
 
     if (isToken && isAuthenticated) {
-      history.push("/");
+      setTimeout(()=> {
+        history.push("/");
+        dispatch(onUpdateStatusError(false))
+     }, 3000)
+
+    
     } else {
       history.push("/login");
     }
@@ -51,6 +59,10 @@ const Login = (props) => {
   return (
     <>
       <div className="login-app">
+      <div className= {loginStatus ? "notify-succed active"  : "notify-succed"} >
+          <p>Login succeed !</p>
+
+        </div>
       <div
           id="notify"
           className={error ? "notify active" : "notify"}
@@ -110,6 +122,7 @@ const mapState = (state) => ({
   isAuthenticated: state.home,
   error: state.login,
   message: state.login,
+  loginStatus: state.login,
 });
 
 export default connect(mapState)(Login);
