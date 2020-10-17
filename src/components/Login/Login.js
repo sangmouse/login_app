@@ -48,7 +48,7 @@ const Login = (props) => {
       setTimeout(()=> {
         history.push("/");
         dispatch(onUpdateStatusError(false))
-     }, 3000)
+     }, 2000)
 
     
     } else {
