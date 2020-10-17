@@ -13,7 +13,7 @@ const Register = (props) => {
   const { registerStatus } = props.registerStatus;
   const { error } = props.error;
   const { message } = props.message;
- console.log('message', message)
+//  console.log('message', message)
 
 
   const onChangeUsername = (event) => {
@@ -45,13 +45,22 @@ const Register = (props) => {
 
   useEffect(() => {
     if (registerStatus) {
-      history.push("/login");
+      
+      setTimeout(()=> {
+        history.push("/login");
+     }, 3000)
+
+      
     }
   }, [registerStatus]);
 
   return (
     <>
       <div className="login-app">
+        <div className= {registerStatus ? "notify-succed active"  : "notify-succed"} >
+          <p>Register succeed !</p>
+
+        </div>
         <div
           id="notify"
           className={error ? "notify active" : "notify"}
