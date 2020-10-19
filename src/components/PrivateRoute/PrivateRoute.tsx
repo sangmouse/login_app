@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 
-const PrivateRoute = (props) => {
+const PrivateRoute = (props: any) => {
   const { location } = props;
   const { isAuthenticated, register, component: Component, ...rest } = props;
   return (
@@ -27,7 +27,7 @@ const PrivateRoute = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   isAuthenticated: state.home.isAuthenticated,
   register: state.register.register,
 });

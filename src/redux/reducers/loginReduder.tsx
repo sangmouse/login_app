@@ -1,4 +1,4 @@
-import * as type from "./../TypeAction";
+import * as type from "../TypeAction";
 
 const initialState = {
   loading: false,
@@ -12,7 +12,7 @@ const initialState = {
   loginStatus: false
 };
 
-export default function loginReduder(state = initialState, action) {
+export default function loginReduder(state = initialState, action: any) {
 
   
   switch (action.type) {

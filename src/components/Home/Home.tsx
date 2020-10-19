@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
@@ -8,7 +8,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const onHandleLogout = (e) => {
+  const onHandleLogout = (e: FormEvent) => {
     e.preventDefault();
     localStorage.removeItem("token");
     dispatch(onLogout());

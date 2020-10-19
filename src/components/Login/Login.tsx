@@ -1,10 +1,17 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, FormEvent } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router";
-import { registerRequest, onUpdateStatusError } from "./../../redux/actions/index";
-import { loginRequest } from "./../../redux/actions/index";
+import { registerRequest, onUpdateStatusError } from "../../redux/actions/index";
+import { loginRequest } from "../../redux/actions/index";
 
-const Login = (props) => {
+interface Props {
+  isAuthenticated: any,
+  error: any,
+  message: any,
+  loginStatus: any,
+}
+
+const Login = (props: Props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -18,26 +25,26 @@ const Login = (props) => {
 
   
 
-  const onChangeEmail = (event) => {
+  const onChangeEmail = (event:  React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
-  const onChangePassword = (event) => {
+  const onChangePassword = (event:  React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch(loginRequest(email, password));
   };
 
-  const onHandleRegister = (e) => {
+  const onHandleRegister = (e: FormEvent) => {
     e.preventDefault();
     // dispatch(registerRequest())
     history.push("/register");
   };
 
   const onCloseNofify = () => {
-    document.getElementById("notify").style.display = "none";
+    // document.getElementById("notify").style.display = "none";
     dispatch(onUpdateStatusError(false))
   };
 
@@ -117,7 +124,7 @@ const Login = (props) => {
   );
 };
 
-const mapState = (state) => ({
+const mapState = (state: any) => ({
   tokenLogin: state.login,
   isAuthenticated: state.home,
   error: state.login,

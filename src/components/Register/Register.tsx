@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, FormEvent } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router";
-import { registerRequest, onUpdateStatusError } from "./../../redux/actions/index";
-import store from "./../../redux/store";
+import { registerRequest, onUpdateStatusError } from "../../redux/actions/index";
+import store from "../../redux/store";
 
-const Register = (props) => {
+const Register = (props: any) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -16,17 +16,17 @@ const Register = (props) => {
 //  console.log('message', message)
 
 
-  const onChangeUsername = (event) => {
+  const onChangeUsername = (event:  React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
-  const onChangeEmail = (event) => {
+  const onChangeEmail = (event:  React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
-  const onChangePassword = (event) => {
+  const onChangePassword = (event:  React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch(registerRequest(username, email, password));
   };
@@ -36,7 +36,7 @@ const Register = (props) => {
   };
 
   const onCloseNofify = () => {
-    document.getElementById("notify").style.display = "none";
+    // document.getElementById("notify").style.display = "none";
     dispatch(onUpdateStatusError(false))
   };
 
@@ -133,7 +133,7 @@ const Register = (props) => {
   );
 };
 
-const mapState = (state) => ({
+const mapState = (state: any) => ({
   registerStatus: state.register,
   error: state.register,
   message: state.register,

@@ -1,12 +1,12 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import * as type from "./../TypeAction";
+import * as type from "../TypeAction";
 import axios from "axios";
 
-import { loginSucced, loginFailed } from "./../actions/index";
+import { loginSucced, loginFailed } from "../actions/index";
 
 const apiUrl = "https://conduit.productionready.io/api/users/login";
 
-export function* signInSaga(action) {
+export function* signInSaga(action: any) {
   const data = {
     user: {
       email: action.payload.email,

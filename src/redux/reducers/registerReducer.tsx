@@ -1,4 +1,4 @@
-import * as type from "./../TypeAction";
+import * as type from "../TypeAction";
 
 const initialState = {
   loading: false,
@@ -8,7 +8,7 @@ const initialState = {
   
 };
 
-export default function registerReducer(state = initialState, action) {
+export default function registerReducer(state = initialState, action: any) {
   switch (action.type) {
     case type.REGISTER_REQUEST:
       return {
